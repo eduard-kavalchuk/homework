@@ -7,6 +7,6 @@ public class IsSymbol {
             return;
         }
 
-        System.out.println("Input character is an alphabatic: " + Character.isAlphabetic(args[0].charAt(0)));
+        System.out.println("Input character is an alphabetic: " + Character.isAlphabetic(args[0].charAt(0)));
     }
 }
