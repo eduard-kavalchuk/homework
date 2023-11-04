@@ -6,7 +6,12 @@ public class IsSymbol {
             System.err.println("Usage: IsSymbol character");
             return;
         }
+        System.out.println("Input character is an alphabetic: " + isSymbol(args[0]));
+    }
 
-        System.out.println("Input character is an alphabetic: " + Character.isAlphabetic(args[0].charAt(0)));
+    public static boolean isSymbol(String c) {
+        if (c.length() != 1)
+            return false;
+        return Character.isAlphabetic(c.charAt(0));
     }
 }

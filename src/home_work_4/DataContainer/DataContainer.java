@@ -62,7 +62,7 @@ public class DataContainer<T> implements Iterable<T> {
      * Returns an array containing a shallow copy of the container elements in an array
      * */
     public T[] getItems() {
-        return Arrays.copyOf(data, data.length);  // shallow copy!
+        return Arrays.copyOf(data, size);  // shallow copy!
     }
 
     /**
@@ -121,6 +121,8 @@ public class DataContainer<T> implements Iterable<T> {
      * */
     public String toString() {
         int i = 0;
+        if (size == 0)
+            return "[]";
         StringBuilder s = new StringBuilder();
         s.append('[');
         for (; i < size - 1; i++) {
