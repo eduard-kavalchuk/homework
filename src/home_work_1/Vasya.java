@@ -3,49 +3,44 @@ package home_work_1;
 import java.util.Objects;
 
 class One {
-    public void Greet(String name) {
+    public String Greet(String name) {
         if (Objects.equals(name, "Вася")) {
-            System.out.println("Привет!");
-            System.out.println("Я тебя так долго ждал.");
+            return "Привет!\nЯ тебя так долго ждал.";
         }
         else {
             if (Objects.equals(name, "Анастасия")) {
-                System.out.println("Я тебя так долго ждал.");
+                return "Я тебя так долго ждал.";
             }
-            else 
-                System.out.println("Добрый день, а вы кто?");
+            else
+                return "Добрый день, а вы кто?";
         }
     }
 }
 
 class Two {
-    public void Greet(String name) {
+    public String Greet(String name) {
         if (Objects.equals(name, "Вася")) {
-            System.out.println("Привет!");
-            System.out.println("Я тебя так долго ждал.");
+            return "Привет!\nЯ тебя так долго ждал.";
         }
         else if (Objects.equals(name, "Анастасия")) {
-            System.out.println("Я тебя так долго ждал.");
+            return "Я тебя так долго ждал.";
         }
-        else 
-            System.out.println("Добрый день, а вы кто?");
+        else
+            return "Добрый день, а вы кто?";
     }
 }
 
 class Three {
-    public void Greet(String name) {
+    public String Greet(String name) {
         switch(name.compareTo("Вася")) {
             case 0:
-                System.out.println("Привет!");
-                System.out.println("Я тебя так долго ждал.");
-                break;
+                return "Привет!\nЯ тебя так долго ждал.";
             default:
                 switch(name.compareTo("Анастасия")) {
                     case 0:
-                        System.out.println("Я тебя так долго ждал.");
-                        break;
+                        return "Я тебя так долго ждал.";
                     default:
-                        System.out.println("Добрый день, а вы кто?");
+                        return "Добрый день, а вы кто?";
                 }
         }
     }
@@ -58,13 +53,24 @@ public class Vasya {
             return;
         }
 
+        Vasya vasya = new Vasya();
+        System.out.println(vasya.greet1(args[0]));
+        System.out.println(vasya.greet2(args[0]));
+        System.out.println(vasya.greet3(args[0]));
+    }
+
+    public String greet1(String s) {
         One one = new One();
-        one.Greet(args[0]);
+        return one.Greet(s);
+    }
 
+    public String greet2(String s) {
         Two two = new Two();
-        two.Greet(args[0]);
+        return two.Greet(s);
+    }
 
+    public String greet3(String s) {
         Three three = new Three();
-        three.Greet(args[0]);
+        return three.Greet(s);
     }
 }
