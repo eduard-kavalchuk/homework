@@ -21,9 +21,10 @@ public class CalculatorWithOperator implements ICalculator {
     }
 
     public double power(double a, int b) {
+        double result = a;
         for (int i = 1; i < b; i++ )
-            a *= a;
-        return a;
+            result *= a;
+        return result;
     }
 
     public double abs(double a) {
