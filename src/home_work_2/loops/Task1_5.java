@@ -57,11 +57,14 @@ class Task1_5 {
         return fiboElement(n - 1) + fiboElement(n - 2);
     }
 
-    private static void fibonacci(int n) {
-        for (int i = 0; i <= n; i++) {
-            System.out.print(fiboElement(i) + " ");
+    public static String fibonacci(int n) {
+        int i = 0;
+        StringBuilder sb = new StringBuilder();
+        for (; i < n; i++) {
+            sb.append(fiboElement(i) + " ");
         }
-        System.out.println();
+        sb.append(fiboElement(i));
+        return sb.toString();
     }
 
     private static void task_1_5_5(byte start, byte stop, byte step) {

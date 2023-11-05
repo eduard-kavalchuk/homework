@@ -21,4 +21,19 @@ public class SortTest {
         SortsUtils.sort(initArray);
         assertArrayEquals(sortedArray, initArray);
     }
+
+    @Test
+    @DisplayName("Random array test")
+    public void random() {
+        int[] array = ArraysUtils.arrayRandom(10, 5);
+        assertEquals(array.length, 10);
+
+        boolean asExpected = true;
+        for (int a : array)
+            if (a >= 5) {
+                asExpected = false;
+                break;
+            }
+        assertTrue(asExpected);
+    }
 }

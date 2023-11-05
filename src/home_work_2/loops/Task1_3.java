@@ -17,7 +17,7 @@ class Task1_3 {
         return true;
     }
 
-    private static double power(double a, int b) {
+    public static double power(double a, int b) {
         double result = a;
         for (int i = 1; i < b; i++)
             result *= a;
