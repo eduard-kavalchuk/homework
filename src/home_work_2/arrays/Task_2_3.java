@@ -15,8 +15,8 @@ class PrintAllElements implements IArraysOperation {
         int k = 0;
         do {
             System.out.print(array[k++] + " ");
-        } while (k < array.length);
-        System.out.println();
+        } while (k < array.length - 1);
+        System.out.print(array[k]);
     }
 
     public void WhileOperation(int[] array) {
