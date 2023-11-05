@@ -34,7 +34,7 @@ class BinaryString {
 
         // Absolute value of -128 overflows the byte so it should be handled separately
         if (number == -128)
-            return "10000000";
+            return "0b10000000";
 
         s = toUnsignedBinaryString((byte) Math.abs(number));
 
@@ -55,8 +55,8 @@ class BinaryString {
 
     public static String toBinaryString(byte number) {
         if (number >= 0)
-            return toUnsignedBinaryString(number);
-        return toTwosComplementString(number);
+            return "0b" + toUnsignedBinaryString(number);
+        return "0b" + toTwosComplementString(number);
     }
     public static void main(String args[]) {
         byte inputByte;
