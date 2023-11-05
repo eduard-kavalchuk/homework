@@ -5,8 +5,6 @@ import home_work_4.DataContainer.StringComparator;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 
-import java.util.Arrays;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class DataContainerTest {

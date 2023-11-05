@@ -3,14 +3,14 @@ package home_work_3.calcs;
 import home_work_3.calcs.api.ICalculator;
 
 public class CalculatorWithCounterAutoAggregation implements ICalculator {
-    private CalculatorWithMathCopy calc;
+    private ICalculator calc;
     private long operationsCounter;
 
     public long getCountOperation() {
         return operationsCounter;
     }
 
-    public CalculatorWithCounterAutoAggregation(CalculatorWithMathCopy calc) {
+    public CalculatorWithCounterAutoAggregation(ICalculator calc) {
         this.calc = calc;
     }
 

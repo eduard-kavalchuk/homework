@@ -2,7 +2,7 @@ package home_work_3.calcs;
 
 import home_work_3.calcs.api.ICalculator;
 
-public class CalculatorWithCounterAutoChoiceAgregation implements ICalculator {
+public class CalculatorWithCounterAutoChoiceAggregation implements ICalculator {
     private CalculatorWithOperator calculatorWithOperator;
     private CalculatorWithMathCopy calculatorWithMathCopy;
     private CalculatorWithMathExtends calculatorWithMathExtends;
@@ -12,15 +12,15 @@ public class CalculatorWithCounterAutoChoiceAgregation implements ICalculator {
         return operationsCounter;
     }
 
-    public CalculatorWithCounterAutoChoiceAgregation(CalculatorWithOperator calc) {
+    public CalculatorWithCounterAutoChoiceAggregation(CalculatorWithOperator calc) {
         this.calculatorWithOperator = calc;
     }
 
-    public CalculatorWithCounterAutoChoiceAgregation(CalculatorWithMathCopy calc) {
+    public CalculatorWithCounterAutoChoiceAggregation(CalculatorWithMathCopy calc) {
         this.calculatorWithMathCopy = calc;
     }
 
-    public CalculatorWithCounterAutoChoiceAgregation(CalculatorWithMathExtends calc) {
+    public CalculatorWithCounterAutoChoiceAggregation(CalculatorWithMathExtends calc) {
         this.calculatorWithMathExtends = calc;
     }
 

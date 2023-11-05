@@ -2,7 +2,7 @@ package home_work_3.calcs;
 
 import home_work_3.calcs.api.ICalculator;
 
-public class CalculatorWithMemory {
+public class CalculatorWithMemory implements ICalculator {
     private ICalculator calc;
     private double result;
     private double savedValue;

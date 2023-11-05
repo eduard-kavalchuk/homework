@@ -2,7 +2,7 @@ package home_work_3.calcs;
 
 import home_work_3.calcs.api.ICalculator;
 
-public class CalculatorWithCounterAutoAggregationInterface {
+public class CalculatorWithCounterAutoAggregationInterface implements ICalculator {
     private ICalculator calc;
     private long operationsCounter;
 
