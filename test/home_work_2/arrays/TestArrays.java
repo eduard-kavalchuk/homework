@@ -48,13 +48,13 @@ public class TestArrays {
         p.WhileOperation(array);
         assertEquals("1 2 3", outContent.toString());
     }
-    @Test
+    @ParameterizedTest(name="{index} - {0}")
     @DisplayName("Print all with For loop")
-    public void printAllWithForOperation() {
-        int[] array = {1, 2, 3};
-        PrintAllElements p = new PrintAllElements();
-        p.ForOperation(array);
-        assertEquals("1 2 3", outContent.toString());
+    @MethodSource("objectProvider")
+    public void printAllWithForOperation(IArraysOperation object, String expected) {
+        outContent.reset();
+        object.ForOperation(initArray);
+        assertEquals(expected, outContent.toString());
     }
     @ParameterizedTest(name="{index} - {0}")
     @DisplayName("Print all with ForEach loop")
