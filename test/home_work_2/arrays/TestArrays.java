@@ -4,16 +4,23 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.BeforeEach.*;
+import static org.junit.jupiter.api.Named.named;
 
 public class TestArrays {
-    private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-    private final PrintStream originalOut = System.out;
+    private final static ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+    private final static PrintStream originalOut = System.out;
+    private final static int[] initArray = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
+    private final static String allElementsArray = "1 2 3 4 5 6 7 8 9 0";
+    private final static String eachSecondElementArray = "1 3 5 7 9";
 
     @BeforeEach
     public void setUpStreams() {
@@ -49,12 +56,20 @@ public class TestArrays {
         p.ForOperation(array);
         assertEquals("1 2 3", outContent.toString());
     }
-    @Test
+    @ParameterizedTest(name="{index} - {0}")
     @DisplayName("Print all with ForEach loop")
-    public void printAllWithForEachOperation() {
-        int[] array = {1, 2, 3};
-        PrintAllElements p = new PrintAllElements();
-        p.ForEachOperation(array);
-        assertEquals("1 2 3", outContent.toString());
+    @MethodSource("objectProvider")
+    public void printWithForEachOperation(IArraysOperation object, String expected) {
+        outContent.reset();
+        object.ForEachOperation(initArray);
+        assertEquals(expected, outContent.toString());
+    }
+    public static Stream<Arguments> objectProvider() {
+        return Stream.of(
+                Arguments.arguments(
+                        named("Print all elements", new PrintAllElements()), allElementsArray),
+                Arguments.arguments(
+                        named("Print each second element", new PrintEachSecondElement()), eachSecondElementArray)
+        );
     }
 }

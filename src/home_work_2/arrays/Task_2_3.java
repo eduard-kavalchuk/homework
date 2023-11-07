@@ -3,13 +3,6 @@ package home_work_2.arrays;
 import java.util.Arrays;
 import home_work_2.utils.ArraysUtils;
 
-abstract interface IArraysOperation {
-    void DoWhileOperation(int[] array);
-    void WhileOperation(int[] array);
-    void ForOperation(int[] array);
-    void ForEachOperation(int[] array);
-}
-
 class PrintAllElements implements IArraysOperation {
     public void DoWhileOperation(int[] array) {
         int k = 0;
@@ -48,7 +41,7 @@ class PrintEachSecondElement implements IArraysOperation {
         do {
             System.out.print(array[k] + " ");
             k += 2;
-        } while (k < array.length);
+        } while (k < array.length - 2);
         System.out.println();
     }
 
@@ -69,11 +62,13 @@ class PrintEachSecondElement implements IArraysOperation {
 
     public void ForEachOperation(int[] array) {
         int k = 0;
+        StringBuilder sb = new StringBuilder();
         for (int e : array) {
             if (k++ % 2 == 0)
-                System.out.print(e + " ");
+                sb.append(e + " ");
         }
-        System.out.println();
+        sb.deleteCharAt(sb.length() - 1);
+        System.out.print(sb);
     }
 }
 
