@@ -33,4 +33,28 @@ public class TestArrays {
         p.DoWhileOperation(array);
         assertEquals("1 2 3", outContent.toString());
     }
+    @Test
+    @DisplayName("Print all with While loop")
+    public void printAllWithWhileOperation() {
+        int[] array = {1, 2, 3};
+        PrintAllElements p = new PrintAllElements();
+        p.WhileOperation(array);
+        assertEquals("1 2 3", outContent.toString());
+    }
+    @Test
+    @DisplayName("Print all with For loop")
+    public void printAllWithForOperation() {
+        int[] array = {1, 2, 3};
+        PrintAllElements p = new PrintAllElements();
+        p.ForOperation(array);
+        assertEquals("1 2 3", outContent.toString());
+    }
+    @Test
+    @DisplayName("Print all with ForEach loop")
+    public void printAllWithForEachOperation() {
+        int[] array = {1, 2, 3};
+        PrintAllElements p = new PrintAllElements();
+        p.ForEachOperation(array);
+        assertEquals("1 2 3", outContent.toString());
+    }
 }

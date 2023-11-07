@@ -21,21 +21,24 @@ class PrintAllElements implements IArraysOperation {
 
     public void WhileOperation(int[] array) {
         int k = 0;
-        while (k < array.length)
+        while (k < array.length - 1)
             System.out.print(array[k++] + " ");
-        System.out.println();
+        System.out.print(array[k]);
     }
 
     public void ForOperation(int[] array) {
-        for (int i = 0; i < array.length; i++)
-            System.out.print(array[i] + " ");
-        System.out.println();
+        int k = 0;
+        for (; k < array.length - 1; k++)
+            System.out.print(array[k] + " ");
+        System.out.print(array[k]);
     }
 
     public void ForEachOperation(int[] array) {
+        int counter = 0;
         for (int e : array)
-            System.out.print(e + " ");
-        System.out.println();
+            if (++counter < array.length)
+                System.out.print(e + " ");
+            else System.out.print(e);
     }
 }
 
