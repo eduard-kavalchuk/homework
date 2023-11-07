@@ -22,6 +22,9 @@ public class TestArrays {
     private final static String allElementsArray = "1 2 3 4 5 6 7 8 9 0";
     private final static String eachSecondElementArray = "1 3 5 7 9";
 
+    /**
+     * Redirect 
+     * */
     @BeforeEach
     public void setUpStreams() {
         System.setOut(new PrintStream(outContent));
@@ -33,13 +36,12 @@ public class TestArrays {
         System.setOut(originalOut);
     }
 
-    @Test
+    @ParameterizedTest(name="{index} - {0}")
     @DisplayName("Print all with DoWhile loop")
-    public void printAllWithDoWhileOperation() {
-        int[] array = {1, 2, 3};
-        PrintAllElements p = new PrintAllElements();
-        p.DoWhileOperation(array);
-        assertEquals("1 2 3", outContent.toString());
+    @MethodSource("objectProvider")
+    public void printAllWithDoWhileOperation(IArraysOperation object, String expected) {
+        object.DoWhileOperation(initArray);
+        assertEquals(expected, outContent.toString());
     }
 
     @ParameterizedTest(name="{index} - {0}")
@@ -65,7 +67,7 @@ public class TestArrays {
         object.ForEachOperation(initArray);
         assertEquals(expected, outContent.toString());
     }
-    
+
     public static Stream<Arguments> objectProvider() {
         return Stream.of(
                 Arguments.arguments(
