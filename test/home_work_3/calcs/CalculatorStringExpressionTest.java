@@ -14,5 +14,4 @@ public class CalculatorStringExpressionTest {
         double result = calc.calculate();
         assertEquals(140.46, result, 1e-6);
     }
-
 }
