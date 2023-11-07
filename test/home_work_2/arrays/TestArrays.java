@@ -25,6 +25,7 @@ public class TestArrays {
     @BeforeEach
     public void setUpStreams() {
         System.setOut(new PrintStream(outContent));
+        outContent.reset();
     }
 
     @AfterEach
@@ -40,30 +41,31 @@ public class TestArrays {
         p.DoWhileOperation(array);
         assertEquals("1 2 3", outContent.toString());
     }
-    @Test
+
+    @ParameterizedTest(name="{index} - {0}")
     @DisplayName("Print all with While loop")
-    public void printAllWithWhileOperation() {
-        int[] array = {1, 2, 3};
-        PrintAllElements p = new PrintAllElements();
-        p.WhileOperation(array);
-        assertEquals("1 2 3", outContent.toString());
+    @MethodSource("objectProvider")
+    public void printAllWithWhileOperation(IArraysOperation object, String expected) {
+        object.WhileOperation(initArray);
+        assertEquals(expected, outContent.toString());
     }
+
     @ParameterizedTest(name="{index} - {0}")
     @DisplayName("Print all with For loop")
     @MethodSource("objectProvider")
     public void printAllWithForOperation(IArraysOperation object, String expected) {
-        outContent.reset();
         object.ForOperation(initArray);
         assertEquals(expected, outContent.toString());
     }
+
     @ParameterizedTest(name="{index} - {0}")
     @DisplayName("Print all with ForEach loop")
     @MethodSource("objectProvider")
     public void printWithForEachOperation(IArraysOperation object, String expected) {
-        outContent.reset();
         object.ForEachOperation(initArray);
         assertEquals(expected, outContent.toString());
     }
+    
     public static Stream<Arguments> objectProvider() {
         return Stream.of(
                 Arguments.arguments(

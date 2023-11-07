@@ -47,11 +47,11 @@ class PrintEachSecondElement implements IArraysOperation {
 
     public void WhileOperation(int[] array) {
         int k = 0;
-        while (k < array.length) {
+        while (k < array.length - 2) {
             System.out.print(array[k] + " ");
             k += 2;
         }
-        System.out.println();
+        System.out.print(array[k]);
     }
 
     public void ForOperation(int[] array) {
