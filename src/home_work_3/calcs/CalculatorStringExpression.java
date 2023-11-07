@@ -1,7 +1,11 @@
-package home_work_3.calculator;
+package home_work_3.calcs;
 
-public class Calc {
-    public static double calculate(StringBuilderWithCounter ts) {
+public class CalculatorStringExpression {
+    private static StringBuilderWithCounter ts;
+    public CalculatorStringExpression(String expr) {
+        ts = new StringBuilderWithCounter(expr);
+    }
+    public double calculate() {
         double value = expression(ts);
         if (ts.length() > 0) {
             System.out.println("Malformed expression starting at position " + ts.counter);
@@ -113,13 +117,6 @@ public class Calc {
             System.exit(1);
         }
         return Double.parseDouble(value);
-    }
-
-    public static void main(String[] args) {
-        String expr = args[0];
-        StringBuilderWithCounter ts = new StringBuilderWithCounter(expr);
-        double value = calculate(ts);
-        System.out.println(expr + " = " + value);
     }
 }
 
