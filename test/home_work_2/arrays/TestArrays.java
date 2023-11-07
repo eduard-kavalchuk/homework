@@ -23,7 +23,7 @@ public class TestArrays {
     private final static String eachSecondElementArray = "1 3 5 7 9";
 
     /**
-     * Redirect 
+     * Before each test case redirect the print stream from console to buffer and clear the buffer
      * */
     @BeforeEach
     public void setUpStreams() {
@@ -31,11 +31,17 @@ public class TestArrays {
         outContent.reset();
     }
 
+    /**
+     * After each test case restore the print stream to a default state
+     * */
     @AfterEach
     public void restoreStreams() {
         System.setOut(originalOut);
     }
 
+    /**
+     * Use ParameterizedTest to verify methods of both PrintEachSecondElement and PrintAllElements classes
+     * */
     @ParameterizedTest(name="{index} - {0}")
     @DisplayName("Print all with DoWhile loop")
     @MethodSource("objectProvider")
