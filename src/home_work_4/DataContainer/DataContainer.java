@@ -154,10 +154,10 @@ public class DataContainer<T> implements Iterable<T> {
     /**
      * Static version of the sort function for Comparable types
      * */
-    public static <T extends Comparable<T>> void sort(DataContainer<T> container) {
+    public static <C extends Comparable<C>> void sort(DataContainer<C> container) {
         for (int i = 0; i < container.size; i++)
             for (int j = i; j > 0 && container.data[j-1].compareTo(container.data[j]) > 0; j--) {
-                T t = container.data[j];
+                C t = container.data[j];
                 container.data[j] = container.data[j - 1];
                 container.data[j - 1] = t;
             }
