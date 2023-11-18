@@ -1,5 +1,6 @@
 package home_work_5;
 
+import java.io.File;
 import java.util.Random;
 
 public class PersonFactory {
@@ -10,7 +11,9 @@ public class PersonFactory {
         return new Person(nick, password, randomCyrillicStringGenerator());
     }
     public static Person createWithRandomRealName(String nick, String password) {
-        return new Person(nick, password, "abc");
+        String[] names = FileReader.getInstance().getNames();
+        int idx = new Random().nextInt(names.length);
+        return new Person(nick, password, names[idx]);
     }
     public static Person createWithNameFromFile(String nick, String password) {
         return new Person(nick, password, "abc");

@@ -18,9 +18,14 @@ public class FileReader {
         }
         return fr;
     }
-    public String[] getNames() throws IOException {
+    public String[] getNames() {
         if (namesBuffer == null) {
-            namesBuffer = readNamesFromFile(NAMES_FILE_PATH);
+            try {
+                namesBuffer = readNamesFromFile(NAMES_FILE_PATH);
+            } catch (IOException e) {
+                System.out.println("No such file: " +NAMES_FILE_PATH );
+                System.exit(1);
+            }
         }
         return namesBuffer;
     }
