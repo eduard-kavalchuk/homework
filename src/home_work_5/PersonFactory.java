@@ -20,7 +20,7 @@ public class PersonFactory {
         Random random = new Random();
         int len = random.nextInt(5) + 5;
         int utf8Code = random.nextInt(max - min) + min;
-        builder.appendCodePoint(utf8Code - 32); // convert from lowercase to uppercase
+        builder.appendCodePoint(utf8Code - 32); // convert first letter from lowercase to uppercase
         for (int i = 0; i < len - 1; i++) {
             utf8Code = random.nextInt(max - min) + min;
             builder.appendCodePoint(utf8Code);
