@@ -2,6 +2,10 @@ package home_work_5.helpers;
 
 import home_work_5.Person;
 
+/**
+ * Implements comparison of two {@code Persons} first by theis password lengths
+ * and then by nicknames in alphabetic order.
+ * */
 public class PersonComparatorByPasswordLengthAndNickname implements IComparator<Person> {
     public int compare(Person o1, Person o2) {
         PersonComparatorByPasswordLength cmp = new PersonComparatorByPasswordLength();
