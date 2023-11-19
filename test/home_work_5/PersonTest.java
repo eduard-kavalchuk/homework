@@ -51,7 +51,7 @@ public class PersonTest {
     @Test
     @DisplayName("Person::createWithRandomRussianName()")
     public void createWithRandomRussianName() {
-        Person person = PersonFactory.createWithRandomRussianName(CYRILLIC_NICKNAME, PASSWORD);
+        Person person = PersonFactory.createWithRandomCyrillicName(CYRILLIC_NICKNAME, PASSWORD);
         assertEquals(CYRILLIC_NICKNAME, person.getNick());
         assertEquals(PASSWORD, person.getPassword());
         int len = person.getName().length();
