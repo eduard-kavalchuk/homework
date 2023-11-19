@@ -49,8 +49,8 @@ public class PersonTest {
         }
     }
     @Test
-    @DisplayName("Person::createWithRandomRussianName()")
-    public void createWithRandomRussianName() {
+    @DisplayName("Person::createWithRandomCyrillicName()")
+    public void createWithRandomCyrillicName() {
         Person person = PersonFactory.createWithRandomCyrillicName(CYRILLIC_NICKNAME, PASSWORD);
         assertEquals(CYRILLIC_NICKNAME, person.getNick());
         assertEquals(PASSWORD, person.getPassword());
@@ -65,9 +65,9 @@ public class PersonTest {
         }
     }
     @Test
-    @DisplayName("Person::createWithRandomRussianNickname()")
-    public void createWithRandomRussianNickname() {
-        Person person = PersonFactory.createWithRandomRussianNickname(PASSWORD, CYRILLIC_NAME);
+    @DisplayName("Person::createWithRandomCyrillicNickname()")
+    public void createWithRandomCyrillicNickname() {
+        Person person = PersonFactory.createWithRandomCyrillicNickname(PASSWORD, CYRILLIC_NAME);
         assertEquals(CYRILLIC_NAME, person.getName());
         assertEquals(PASSWORD, person.getPassword());
         int len = person.getNick().length();

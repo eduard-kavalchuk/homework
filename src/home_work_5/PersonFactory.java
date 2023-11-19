@@ -46,7 +46,7 @@ public class PersonFactory {
      * @param password password
      * @return {@code Person} instance
      * */
-    public static Person createWithRandomRussianNickname(String password, String name) {
+    public static Person createWithRandomCyrillicNickname(String password, String name) {
         return new Person(NameGenerator.getRandomCyrillicString(), password, name);
     }
 
