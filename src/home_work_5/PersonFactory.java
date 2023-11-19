@@ -1,6 +1,5 @@
 package home_work_5;
 
-import java.io.File;
 import java.util.Random;
 
 public class PersonFactory {

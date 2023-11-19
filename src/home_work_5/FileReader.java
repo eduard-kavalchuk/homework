@@ -23,7 +23,7 @@ public class FileReader {
             try {
                 namesBuffer = readNamesFromFile(NAMES_FILE_PATH);
             } catch (IOException e) {
-                System.out.println("No such file: " +NAMES_FILE_PATH );
+                System.out.println("No such file: " + NAMES_FILE_PATH );
                 System.exit(1);
             }
         }
