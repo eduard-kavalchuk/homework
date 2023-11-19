@@ -1,5 +1,6 @@
 package home_work_5;
 
+import java.io.IOException;
 import java.util.Random;
 
 public class PersonFactory {
@@ -14,8 +15,11 @@ public class PersonFactory {
         int idx = new Random().nextInt(names.length);
         return new Person(nick, password, names[idx]);
     }
-    public static Person createWithNameFromFile(String nick, String password) {
-        return new Person(nick, password, "abc");
+    public static Person createWithRandomNameFromFile(String nick, String password, String path) throws IOException {
+        FileReader fr = FileReader.getInstance();
+        String[] names = fr.readNamesFromFile(path);
+        int idx = new Random().nextInt(names.length);
+        return new Person(nick, password, names[idx]);
     }
     private static String randomStringGenerator(int min, int max) {
         StringBuilder builder = new StringBuilder();
