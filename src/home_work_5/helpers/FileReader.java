@@ -1,4 +1,4 @@
-package home_work_5;
+package home_work_5.helpers;
 
 import java.io.File;
 import java.io.IOException;

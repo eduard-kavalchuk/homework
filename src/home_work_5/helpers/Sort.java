@@ -1,4 +1,4 @@
-package home_work_5.api;
+package home_work_5.helpers;
 
 public class Sort {
     public static <T> void sort(T[] objects, IComparator<T> comparator) {

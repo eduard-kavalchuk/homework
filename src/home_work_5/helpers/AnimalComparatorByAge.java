@@ -1,4 +1,4 @@
-package home_work_5.api;
+package home_work_5.helpers;
 
 import home_work_5.Animal;
 

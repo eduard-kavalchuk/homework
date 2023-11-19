@@ -1,8 +1,8 @@
 package home_work_5;
 
-import home_work_5.api.PersonComparatorByPasswordLength;
-import home_work_5.api.PersonComparatorByPasswordLengthAndNickname;
-import home_work_5.api.Sort;
+import home_work_5.helpers.PersonComparatorByPasswordLength;
+import home_work_5.helpers.PersonComparatorByPasswordLengthAndNickname;
+import home_work_5.helpers.Sort;
 
 public class Person {
     private final String nick;

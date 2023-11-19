@@ -1,6 +1,6 @@
 package home_work_5;
 
-import home_work_5.api.*;
+import home_work_5.helpers.*;
 
 public class Animal {
     private final int age;

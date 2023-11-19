@@ -1,5 +1,7 @@
 package home_work_5;
 
+import home_work_5.helpers.FileReader;
+
 import java.io.IOException;
 import java.util.Random;
 
