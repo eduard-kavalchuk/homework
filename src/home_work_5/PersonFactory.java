@@ -17,7 +17,7 @@ public class PersonFactory {
     public static Person createWithNameFromFile(String nick, String password) {
         return new Person(nick, password, "abc");
     }
-    public static String randomStringGenerator(int min, int max) {
+    private static String randomStringGenerator(int min, int max) {
         StringBuilder builder = new StringBuilder();
         Random random = new Random();
         int len = random.nextInt(5) + 5;
@@ -29,10 +29,10 @@ public class PersonFactory {
         }
         return builder.toString();
     }
-    public static String randomLatinStringGenerator() {
+    private static String randomLatinStringGenerator() {
         return randomStringGenerator(97, 122);
     }
-    public static String randomCyrillicStringGenerator() {
+    private static String randomCyrillicStringGenerator() {
         return randomStringGenerator(1072, 1103);
     }
 
