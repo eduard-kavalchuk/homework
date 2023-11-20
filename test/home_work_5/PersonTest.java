@@ -16,6 +16,7 @@ public class PersonTest {
     private static final String CYRILLIC_NAME = "Виталий";
     private static final String PASSWORD = "qwerty";
     private static final String PATH = String.join(File.separator, "test", "home_work_5", "names.txt");
+
     @Test
     @DisplayName("Person::createWithRandomLatinName()")
     public void createWithRandomLatinName() {
@@ -32,6 +33,7 @@ public class PersonTest {
             else assertTrue(97 <= code && code <= 122);
         }
     }
+
     @Test
     @DisplayName("Person::createWithRandomLatinNickname()")
     public void createWithRandomLatinNickname() {
@@ -48,6 +50,7 @@ public class PersonTest {
             else assertTrue(97 <= code && code <= 122);
         }
     }
+
     @Test
     @DisplayName("Person::createWithRandomCyrillicName()")
     public void createWithRandomCyrillicName() {
@@ -64,6 +67,7 @@ public class PersonTest {
             else assertTrue(1072 <= code && code <= 1103);
         }
     }
+
     @Test
     @DisplayName("Person::createWithRandomCyrillicNickname()")
     public void createWithRandomCyrillicNickname() {
@@ -80,6 +84,7 @@ public class PersonTest {
             else assertTrue(1072 <= code && code <= 1103);
         }
     }
+
     @Test
     @DisplayName("Person::createWithRandomRealName()")
     public void createWithRandomRealName() {
@@ -95,6 +100,7 @@ public class PersonTest {
             else assertTrue(97 <= code && code <= 122);
         }
     }
+
     @Test
     @DisplayName("Person::createWithRandomRealNickname()")
     public void createWithRandomRealNickname() {
@@ -112,6 +118,7 @@ public class PersonTest {
             else assertTrue(97 <= code && code <= 122);
         }
     }
+
     @Test
     @DisplayName("Person::createWithRandomNameFromFile()")
     public void createWithRandomNameFromFile() throws IOException {
@@ -127,6 +134,7 @@ public class PersonTest {
             else assertTrue(97 <= code && code <= 122);
         }
     }
+
     @Test
     @DisplayName("Person::createWithRandomNicknameFromFile()")
     public void createWithRandomNicknameFromFile() throws IOException {
