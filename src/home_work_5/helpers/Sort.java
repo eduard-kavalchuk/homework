@@ -1,6 +1,11 @@
 package home_work_5.helpers;
 
 public class Sort {
+    /**
+     * Sorts an array of instances of generic type
+     * @param objects array of instances of generic type {@code T} to be sorted
+     * @param comparator comparator that is used to compare two instances of type {@code T}
+     * */
     public static <T> void sort(T[] objects, IComparator<T> comparator) {
         T t;
         for (int i = 0; i < objects.length; i++)
