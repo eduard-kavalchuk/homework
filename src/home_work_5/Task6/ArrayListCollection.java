@@ -3,11 +3,10 @@ package home_work_5.Task6;
 import home_work_5.Person;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
-public class LinkedListCollection extends PeopleCollectionsManipulator {
-    public LinkedListCollection(int collectionSize) {
+public class ArrayListCollection extends PeopleCollectionsManipulator {
+    public ArrayListCollection(int collectionSize) {
         super(collectionSize);
     }
 
@@ -16,13 +15,13 @@ public class LinkedListCollection extends PeopleCollectionsManipulator {
         String dummy;
 
         long t1 = System.nanoTime();
-        LinkedList<Person> ll = new LinkedList<>(List.of(people));
+        ArrayList<Person> al = new ArrayList<>(List.of(people));
         long t2 = System.nanoTime();
-        System.out.println("\nКоллекция LinkedList:");
+        System.out.println("\nКоллекция ArrayList:");
         System.out.println("Время заполнения: " +  (t2 - t1) + " нс");
 
         t1 = System.nanoTime();
-        for (Person p : ll) {
+        for (Person p : al) {
             dummy = p.getName();
         }
         t2 = System.nanoTime();
@@ -31,14 +30,14 @@ public class LinkedListCollection extends PeopleCollectionsManipulator {
         t1 = System.nanoTime();
         do {
             ++i;
-            dummy = ll.get(i).getName();
-        } while(i < ll.size() - 1);
+            dummy = al.get(i).getName();
+        } while(i < al.size() - 1);
         t2 = System.nanoTime();
         System.out.println("Время итерирования в цикле doWhile: " +  (t2 - t1) + " нс");
 
         t1 = System.nanoTime();
-        for (i = 0; i < ll.size(); i++) {
-            ll.remove(0);
+        for (i = 0; i < al.size(); i++) {
+            al.remove(0);
         }
         t2 = System.nanoTime();
         System.out.println("Время удаления всех элементов: " +  (t2 - t1) + " нс");
