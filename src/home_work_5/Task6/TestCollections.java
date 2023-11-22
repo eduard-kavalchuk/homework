@@ -11,7 +11,7 @@ public class TestCollections {
         HashSetCollection hsc = new HashSetCollection(100);
         hsc.calculateTimes();
 
-        TreeSetCollection tsc = new TreeSetCollection(100);
-        tsc.calculateTimes();
+       TreeSetCollection tsc = new TreeSetCollection(100);
+       tsc.calculateTimes();
     }
 }
