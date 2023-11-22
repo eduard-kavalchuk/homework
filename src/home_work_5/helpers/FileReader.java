@@ -27,7 +27,7 @@ public class FileReader {
     private String[] namesBuffer;
 
     /**
-     * Constructor is private since this class is implemented as singleton
+     * Constructor is private since this class is implemented as a singleton
      * */
     private FileReader(){}
 
