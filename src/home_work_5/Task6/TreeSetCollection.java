@@ -5,6 +5,9 @@ import home_work_5.Person;
 import java.util.List;
 import java.util.TreeSet;
 
+/**
+ * Реализует проверку скорости выполнения операций коллекции TreeSet
+ * */
 public class TreeSetCollection extends PeopleCollectionsManipulator {
     public TreeSetCollection(int collectionSize) {
         super(collectionSize);
@@ -12,7 +15,6 @@ public class TreeSetCollection extends PeopleCollectionsManipulator {
 
     public void calculateTimes() {
         int i = 0;
-        String dummy;
 
         long t1 = System.nanoTime();
         TreeSet<Person> collection = new TreeSet<>(List.of(people));

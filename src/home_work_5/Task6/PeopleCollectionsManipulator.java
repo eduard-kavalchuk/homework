@@ -3,6 +3,9 @@ package home_work_5.Task6;
 import home_work_5.Person;
 import home_work_5.PersonFactory;
 
+/**
+ * Абстрактный класс-родитель классов реализующих проверку времени выполнения операций коллекций конкретного типа
+ * */
 public abstract class PeopleCollectionsManipulator {
     public final Person[] people;
     public PeopleCollectionsManipulator(int collectionSize) {

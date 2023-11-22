@@ -5,6 +5,9 @@ import home_work_5.Person;
 import java.util.HashSet;
 import java.util.List;
 
+/**
+ * Реализует проверку скорости выполнения операций коллекции HashSet
+ * */
 public class HashSetCollection extends PeopleCollectionsManipulator {
     public HashSetCollection(int collectionSize) {
         super(collectionSize);

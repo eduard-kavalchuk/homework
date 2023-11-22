@@ -5,6 +5,9 @@ import home_work_5.Person;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Реализует проверку скорости выполнения операций коллекции ArrayList
+ * */
 public class ArrayListCollection extends PeopleCollectionsManipulator {
     public ArrayListCollection(int collectionSize) {
         super(collectionSize);
@@ -40,7 +43,7 @@ public class ArrayListCollection extends PeopleCollectionsManipulator {
             al.remove(0);
         }
         t2 = System.nanoTime();
-        System.out.println("Время удаления всех элементов: " +  (t2 - t1) + " нс");
+        System.out.println("Время удаления всех элементов по одному: " +  (t2 - t1) + " нс");
     }
 
 }
