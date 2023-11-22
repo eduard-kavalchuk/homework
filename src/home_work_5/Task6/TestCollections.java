@@ -7,5 +7,8 @@ public class TestCollections {
 
         LinkedListCollection llc = new LinkedListCollection(100);
         llc.calculateTimes();
+
+        HashSetCollection hsc = new HashSetCollection(100);
+        hsc.calculateTimes();
     }
 }
