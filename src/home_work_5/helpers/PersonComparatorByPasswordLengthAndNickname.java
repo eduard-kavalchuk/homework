@@ -3,6 +3,8 @@ package home_work_5.helpers;
 import home_work_5.Person;
 
 public class PersonComparatorByPasswordLengthAndNickname implements IComparator<Person> {
+    // NB. Это неправильная реализация. Заметил в последний момент, что сортировка по второму признаку неверна!
+    // Там нужно сортировать группу, а не только два объекта в отдельности.
     public int compare(Person o1, Person o2) {
         /**
          * Implements comparison of two {@code Persons} by password length. If lengths are equal
