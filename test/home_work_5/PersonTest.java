@@ -1,5 +1,6 @@
 package home_work_5;
 
+import home_work_5.helpers.NameGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -150,5 +151,37 @@ public class PersonTest {
                 assertTrue(65 <= code && code <= 90);
             else assertTrue(97 <= code && code <= 122);
         }
+    }
+
+    @Test
+    @DisplayName("Person::testSortingByPassword()")
+    public void testSortingByPassword() throws IOException {
+        // Здесь и дальше -- говнокод! Дописывал в последний момент!
+        int SIZE = 10;
+        Person[] people = new Person[SIZE];
+        String password;
+        for (int i = 0; i < SIZE; i++) {
+            password = NameGenerator.getRandomLatinString();
+            System.out.print(password.length() + ", ");
+            people[i] = PersonFactory.createWithRandomNicknameFromFile(LATIN_NAME, password, PATH);
+        }
+
+        Person.sortByPasswordLength(people);
+        System.out.println("\n");
+        for (int i = 0; i < SIZE; i++) {
+            password = people[i].getPassword();
+            System.out.print(password.length() + ", ");
+        }
+
+        boolean isCorrect = true;
+        for (int i = 1; i < SIZE - 1; i++) {
+            if (people[i - 1].getPassword().length() > people[i].getPassword().length()) {
+                isCorrect = false;
+                break;
+            }
+        }
+
+        assertTrue(isCorrect);
+
     }
 }
