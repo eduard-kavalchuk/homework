@@ -18,12 +18,17 @@ public class Demo {
                     sb.append(" ");
                 else sb.append(line);
             }
-            line = sb.toString().replaceAll(PUNCTUATION_MARKS, " ");
-            line = line.replaceAll(HYPHEN, " ");
-            line = line.replaceAll("\\s+[0-9]+\\s+", " ");
-            line = line.replaceAll(" - ", " ");
-            line = line.replaceAll("\\s{2,}", " ");
-            return line;
+
+            // Replace with a builder pattern!
+//            line = sb.toString().replaceAll("\\s+[^a-zA-Z]+\\s+", " ");
+//            line = sb.toString().replaceAll(PUNCTUATION_MARKS, " ");
+//            line = line.replaceAll(HYPHEN, " ");
+//            line = line.replaceAll(HYPHEN, " ");
+//            line = line.replaceAll("[0-9]-", " ");
+//            line = line.replaceAll("\\s+[0-9]+\\s+", " ");
+//            line = line.replaceAll(" - ", " ");
+//            line = line.replaceAll("\\s{2,}", " ");
+            return sb.toString();
         } catch (FileNotFoundException e){
             throw new RuntimeException("Файл не найден.");
         } catch (IOException e) {
@@ -31,10 +36,21 @@ public class Demo {
         }
     }
 
-    public static void main(String[] args) throws IOException {
-        String s = file2String();
-        System.out.println(s.substring(0, 1000));
+    public static void main(String[] args) {
+        String s = "Источник: Издательство: 4-x Захаров, 2007 г. Твердый переплет, 800 стр. ISBN   978-5-8159-0748-5 Тираж: 5000 экз.";
+        String[] array = s.split(" ");
+        StringBuilder sb = new StringBuilder();
+        for (String str : array) {
+            for (int i = 0; i < str.length(); i++) {
+                if (Character.UnicodeBlock.of(str.charAt(i)).equals(Character.UnicodeBlock.CYRILLIC)) {
+                    sb.append(str);
+                    sb.append(" ");
+                    break;
+                }
+            }
+        }
 
+        System.out.println(sb.toString());
 
     }
 }
