@@ -4,12 +4,27 @@ import home_work_6.api.ISearchEngine;
 
 public class EasySearch implements ISearchEngine {
     public long search(String text, String word) {
-        return text.indexOf(word);
+        int idx;
+        long counter = 0;
+
+        if (text.indexOf(word) == 0)
+            ++counter;
+
+        while ((idx = text.indexOf(" " + word + " ")) != -1) {
+            ++counter;
+            text = text.substring(idx + word.length() + 2);
+        }
+
+        text = text.substring(text.length() - word.length());
+        if (text.indexOf(word) == 0)
+            ++counter;
+
+        return counter;
     }
 
     public static void main(String[] args) {
-        String text = "ad ad mmf pwo r";
+        String text = "ad ad mmf pwo ad";
         EasySearch es = new EasySearch();
-        System.out.println(es.search(text, "mmf1"));
+        System.out.println(es.search(text, "ad"));
     }
 }

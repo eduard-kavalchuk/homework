@@ -6,6 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class RegExSearch implements ISearchEngine {
+    // ищем отдельно стоящее слово
     public long search(String text, String word) {
         String firstPositionRe = "^" + word + "\\s+";
         String middlePositionRe = "\\s+" + word + "\\s+";
