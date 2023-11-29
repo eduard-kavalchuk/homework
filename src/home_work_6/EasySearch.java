@@ -23,8 +23,9 @@ public class EasySearch implements ISearchEngine {
     }
 
     public static void main(String[] args) {
-        String text = "ad ad mmf pwo ad";
+        String text = "ef  ef ce ef ef";
+        String word = "ef";
         EasySearch es = new EasySearch();
-        System.out.println(es.search(text, "ad"));
+        System.out.println(es.search(text, word));
     }
 }
