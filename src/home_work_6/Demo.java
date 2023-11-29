@@ -1,9 +1,8 @@
 package home_work_6;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Demo {
@@ -21,21 +20,45 @@ public class Demo {
                         .replaceAll("\\s[^\\p{L}]+\\s", " ")  // убрать все слова где нет букв (любого алфавита)
                         .replaceAll(PUNCTUATION_MARKS, " "));       // убрать знаки пунктуации
             }
-
-            return sb.toString();
-
         } catch (FileNotFoundException e){
             throw new RuntimeException("Файл не найден.");
         } catch (IOException e) {
             throw new RuntimeException("Ошибка чтения файла: " + e.getMessage());
         }
+
+        return sb.toString();
     }
 
-    public static void main(String[] args) {
-        String s = file2String(path);
-        s = s.substring(100, 500);
-        Stream<String> stream = Arrays.stream(s.split( "\\s+" ));
-        stream.forEach(System.out::println);
+    public static int getUniqueWordsNumber() {
+        Stream<String> stream = Arrays.stream(file2String(path).split( "\\s+" ));
+        Set<String> set = new HashSet<>();
+        stream.forEach(set::add);
+        return set.size();
+    }
 
+    public static void printMostUsedWords(int N) {
+        Map<String, Integer> unsortedMap = getMostFrequentWords();
+        System.out.println(unsortedMap.size());
+        LinkedHashMap<String, Integer> sortedMap = unsortedMap.entrySet()
+                .stream()
+                .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+                .collect(Collectors.toMap(
+                        Map.Entry::getKey,
+                        Map.Entry::getValue,
+                        (oldValue, newValue) -> oldValue, LinkedHashMap::new));
+
+        int counter = 0;
+        for (String key : sortedMap.keySet()) {
+            if (counter++ > N) break;
+            System.out.println(key + "  " + sortedMap.get(key));
+        }
+    }
+
+    public static Map<String, Integer> getMostFrequentWords() {
+        Map<String, Integer> map = new HashMap<>();
+        Stream<String> stream = Arrays.stream(file2String(path).split( "\\s+" ));
+        final Integer[] e = new Integer[1];
+        stream.forEach(entry -> map.put(entry, (e[0] = map.get(entry)) == null ? 1 : e[0] + 1));
+        return map;
     }
 }
