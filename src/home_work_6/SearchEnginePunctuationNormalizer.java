@@ -1,7 +1,7 @@
 package home_work_6;
 
 public class SearchEnginePunctuationNormalizer extends BasicSearch {
-    private static final String PUNCTUATION_MARKS = "[.,;:!?\'\"]";
+    private static final String PUNCTUATION_MARKS = "[.,;:!?\'\")(]";
     private final BasicSearch bs;
     public SearchEnginePunctuationNormalizer(BasicSearch bs) {
         this.bs = bs;

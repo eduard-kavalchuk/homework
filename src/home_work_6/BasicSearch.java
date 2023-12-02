@@ -24,7 +24,7 @@ public class BasicSearch {
         return sb.toString();
     }
 
-    public int getUniqueWordsNumber(String doc) {
+    public int getUniqueWordsCount(String doc) {
         Stream<String> stream = Arrays.stream(doc.split( "\\s+" ));
         Set<String> set = new HashSet<>();
         stream.forEach(set::add);
@@ -42,7 +42,6 @@ public class BasicSearch {
 
     public void printMostUsedWords(String doc, int N) {
         Map<String, Integer> unsortedMap = getMostFrequentWords(doc);
-        System.out.println("Всего уникальных слов: " + unsortedMap.size());
         LinkedHashMap<String, Integer> sortedMap = unsortedMap.entrySet()
                 .stream()
                 .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
