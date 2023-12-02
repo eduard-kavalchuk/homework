@@ -17,10 +17,10 @@ public class SearchEnginePunctuationNormalizer extends BasicSearch {
 
     public static void main(String[] args) {
         SearchEnginePunctuationNormalizer o = new SearchEnginePunctuationNormalizer(new BasicSearch());
-        String doc = o.get(path);
+        String doc = o.get(BasicSearch.path);
 //        System.out.println(doc.substring(20000, 20200));
 //        System.out.println(o.getUniqueWordsNumber(doc));
 //        o.printMostUsedWords(doc, 20);
-        System.out.println(o.getWordCount(doc, "и."));
+        System.out.println(o.getWordCount(doc, "И"));
     }
 }

@@ -7,7 +7,10 @@ import java.util.regex.Pattern;
 
 public class RegExSearch implements ISearchEngine {
     public long search(String text, String word) {
-        String pattern = "\\b" + word + "\\b";
+        String start = "^" + word + " ";
+        String middle = " " + word + " ";
+        String end = " " + word + "$";
+        String pattern = String.join("|", start, middle, end);
         Pattern stringPattern = Pattern.compile(pattern);
         Matcher m = stringPattern.matcher(text);
         long counter = 0;
