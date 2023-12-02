@@ -9,6 +9,7 @@ public class BasicSearch {
     public static final String path = String.join(File.separator, System.getProperty("user.dir"), "resources", "book.txt");
 
     // Считывает файл и возвращает его содержимое в виде строки
+    // Если файл не найден, то считает, что путь -- это и есть строка
     public String get(String path) {
         StringBuilder sb = new StringBuilder();
         try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
@@ -18,10 +19,8 @@ public class BasicSearch {
                     sb.append(" ");
                 else sb.append(line);
             }
-        } catch (FileNotFoundException e){
-            throw new RuntimeException("Файл не найден.");
-        } catch (IOException e) {
-            throw new RuntimeException("Ошибка чтения файла: " + e.getMessage());
+        } catch (Exception e) {
+            return path;  // считаем, что это не путь к файлу, а строка
         }
         return sb.toString();
     }
