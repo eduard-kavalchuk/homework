@@ -8,7 +8,9 @@ public class CaseInsensitiveSearch implements ISearchEngine {
         this.engine = engine;
     }
 
+    // Позволяет выполнять поиск слова без учёта регистра.
+    // Декорирует объект выполняющий поиск с учётом регистра.
     public long search(String text, String word) {
-        return engine.search(text.toLowerCase(), word);
+        return engine.search(text.toLowerCase(), word.toLowerCase());
     }
 }

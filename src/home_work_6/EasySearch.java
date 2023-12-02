@@ -3,6 +3,7 @@ package home_work_6;
 import home_work_6.api.ISearchEngine;
 
 public class EasySearch implements ISearchEngine {
+    // Реализует поиск слова с помощью метода substring
     public long search(String text, String word) {
         int idx;
         long counter = 0;
@@ -20,12 +21,5 @@ public class EasySearch implements ISearchEngine {
             ++counter;
 
         return counter;
-    }
-
-    public static void main(String[] args) {
-        String text = "ef  ef ce ef ef";
-        String word = "ef";
-        EasySearch es = new EasySearch();
-        System.out.println(es.search(text, word));
     }
 }

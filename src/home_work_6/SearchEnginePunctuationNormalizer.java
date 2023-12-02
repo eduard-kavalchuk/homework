@@ -6,6 +6,8 @@ public class SearchEnginePunctuationNormalizer extends BasicSearch {
     public SearchEnginePunctuationNormalizer(BasicSearch bs) {
         this.bs = bs;
     }
+
+    // Удаляет из строки нежелательные символы
     public String get(String path) {
         String doc = bs.get(path);
         return  doc
@@ -13,14 +15,5 @@ public class SearchEnginePunctuationNormalizer extends BasicSearch {
                 .replaceAll(PUNCTUATION_MARKS, " ") // убрать знаки пунктуации
                 .trim()  // remote leading and trailing spaces
                 .replaceAll("\\s+", " ");  // remove all consecutive escapes
-    }
-
-    public static void main(String[] args) {
-        SearchEnginePunctuationNormalizer o = new SearchEnginePunctuationNormalizer(new BasicSearch());
-        String doc = o.get(BasicSearch.path);
-//        System.out.println(doc.substring(20000, 20200));
-//        System.out.println(o.getUniqueWordsNumber(doc));
-//        o.printMostUsedWords(doc, 20);
-        System.out.println(o.getWordCount(doc, "И"));
     }
 }

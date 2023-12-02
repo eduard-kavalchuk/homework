@@ -6,6 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class RegExSearch implements ISearchEngine {
+    // Реализует поиск слова с помощью регулярных выражений
     public long search(String text, String word) {
         String start = "^" + word + " ";
         String middle = " " + word + " ";
@@ -18,12 +19,5 @@ public class RegExSearch implements ISearchEngine {
             ++counter;
         }
         return counter;
-    }
-
-    public static void main(String[] args) {
-        String text = "ef  ef ce ef ef";
-        String word = "ef";
-        RegExSearch rs = new RegExSearch();
-        System.out.println(rs.search(text, word));
     }
 }

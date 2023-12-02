@@ -16,7 +16,7 @@ public class Demo {
             System.out.println(word + ":");
             System.out.println("RegExSearch: " + re.search(doc, word));
             System.out.println("EasySearch: " + es.search(doc, word));
-            System.out.println("BasicSearch: " + bs.getWordCount(doc, word));
+            System.out.println("BasicSearch: " + bs.getWordFrequency(doc, word));
             System.out.println("CaseInsensitiveSearch: " + ci.search(doc, word));
         }
     }

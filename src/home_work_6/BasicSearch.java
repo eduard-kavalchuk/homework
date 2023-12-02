@@ -7,6 +7,8 @@ import java.util.stream.Stream;
 
 public class BasicSearch {
     public static final String path = String.join(File.separator, System.getProperty("user.dir"), "resources", "book.txt");
+
+    // Считывает файл и возвращает его содержимое в виде строки
     public String get(String path) {
         StringBuilder sb = new StringBuilder();
         try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
@@ -24,6 +26,7 @@ public class BasicSearch {
         return sb.toString();
     }
 
+    // Возвращает количество уникальных слов в строке
     public int getUniqueWordsCount(String doc) {
         Stream<String> stream = Arrays.stream(doc.split( "\\s+" ));
         Set<String> set = new HashSet<>();
@@ -31,7 +34,8 @@ public class BasicSearch {
         return set.size();
     }
 
-    public int getWordCount(String doc, String word) {
+    // Возвращает сколько раз слово встречается в тексте
+    public int getWordFrequency(String doc, String word) {
         Map<String, Integer> map =  getMostFrequentWords(doc);
         try {
             return map.get(word);
@@ -40,6 +44,7 @@ public class BasicSearch {
         }
     }
 
+    // Печатает N наиболее частых слов в тексте
     public void printMostUsedWords(String doc, int N) {
         Map<String, Integer> unsortedMap = getMostFrequentWords(doc);
         LinkedHashMap<String, Integer> sortedMap = unsortedMap.entrySet()
@@ -57,7 +62,9 @@ public class BasicSearch {
         }
     }
 
-    public Map<String, Integer> getMostFrequentWords(String doc) {
+    // Helper method. Returns a map in which a key is a word and a value is a number of
+    // occurrences of this word in text
+    private Map<String, Integer> getMostFrequentWords(String doc) {
         Map<String, Integer> map = new HashMap<>();
         Stream<String> stream = Arrays.stream(doc.split( "\\s+" ));
         final Integer[] e = new Integer[1];
