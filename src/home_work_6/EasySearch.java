@@ -8,7 +8,10 @@ public class EasySearch implements ISearchEngine {
         int idx;
         long counter = 0;
 
-        if (text.indexOf(word) == 0)
+        if (text.equals(word))
+            return 1;
+
+        if (text.indexOf(word + " ") == 0)
             ++counter;
 
         while ((idx = text.indexOf(" " + word + " ")) != -1) {

@@ -8,6 +8,8 @@ import java.util.regex.Pattern;
 public class RegExSearch implements ISearchEngine {
     // Реализует поиск слова с помощью регулярных выражений
     public long search(String text, String word) {
+        if (text.equals(word))
+            return 1;
         String start = "^" + word + " ";
         String middle = " " + word + " ";
         String end = " " + word + "$";

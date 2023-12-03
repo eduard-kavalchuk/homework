@@ -10,7 +10,7 @@ public class SearchTest {
     static BasicSearch bs = new BasicSearch();
     static ISearchEngine es = new EasySearch();
     static ISearchEngine re = new RegExSearch();
-    static ISearchEngine ci = new CaseInsensitiveSearch(es);
+    static ISearchEngine ci = new CaseInsensitiveSearch(re);
     static SearchEnginePunctuationNormalizer o = new SearchEnginePunctuationNormalizer(bs);
     final static String doc = o.get(BasicSearch.path);
 
@@ -122,10 +122,10 @@ public class SearchTest {
     @Test
     @DisplayName("один и 1")
     public void test8() {
-        String doc = "один и 1 ";
+        String doc = "один и 1";
         SearchEnginePunctuationNormalizer o2 = new SearchEnginePunctuationNormalizer(bs);
         String normalized = o2.get(doc);
-        assertEquals(2, bs.getUniqueWordsCount(normalized));
+        assertEquals(3, bs.getUniqueWordsCount(normalized));
     }
 
     @Test
@@ -140,4 +140,40 @@ public class SearchTest {
         assertEquals(1, re.search(normalized, "бабушку"));
     }
 
+    /**
+     * Этот и следующий тесты падают. Разные методы поиска дают различающиеся на одно-два вхождения
+     * результаты для букв "я" и "и". Такое же небольшое по величине отличие наблюдается для поиска
+     * без учёта регистра. Видимо дело в сложных случаях вроде "я-я". Не копал.
+     * */
+    @Test
+    @DisplayName("Тест на поиск буквы Я")
+    public void test10() {
+        long lowerCase1 = re.search(doc, "я");
+        long lowerCase2 = bs.getWordFrequency(doc, "я");
+        assertEquals(lowerCase1, lowerCase2);
+
+        long upperCase1 = re.search(doc, "Я");
+        long upperCase2 = bs.getWordFrequency(doc, "Я");
+        assertEquals(upperCase1, upperCase2);
+
+        long caseInsensitive = ci.search(doc, "я");
+        assertEquals(lowerCase1 + upperCase1, caseInsensitive);
+        assertEquals(lowerCase2 + upperCase2, caseInsensitive);
+    }
+
+    @Test
+    @DisplayName("Тест на поиск буквы И")
+    public void test11() {
+        long lowerCase1 = re.search(doc, "и");
+        long lowerCase2 = bs.getWordFrequency(doc, "и");
+        assertEquals(lowerCase1, lowerCase2);
+
+        long upperCase1 = re.search(doc, "И");
+        long upperCase2 = bs.getWordFrequency(doc, "И");
+        assertEquals(upperCase1, upperCase2);
+
+        long caseInsensitive = ci.search(doc, "и");
+        assertEquals(lowerCase1 + upperCase1, caseInsensitive);
+        assertEquals(lowerCase2 + upperCase2, caseInsensitive);
+    }
 }

@@ -15,9 +15,10 @@ public class BasicSearch {
         try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                if (line.isEmpty())
+                if (!line.isEmpty()) {
                     sb.append(" ");
-                else sb.append(line);
+                    sb.append(line);
+                }
             }
         } catch (Exception e) {
             return path;  // считаем, что это не путь к файлу, а строка
@@ -35,7 +36,7 @@ public class BasicSearch {
 
     // Возвращает сколько раз слово встречается в тексте
     public int getWordFrequency(String doc, String word) {
-        Map<String, Integer> map =  getMostFrequentWords(doc);
+        Map<String, Integer> map =  getUniqueWordsMap(doc);
         try {
             return map.get(word);
         } catch (NullPointerException e) {
@@ -45,7 +46,7 @@ public class BasicSearch {
 
     // Печатает N наиболее частых слов в тексте
     public void printMostUsedWords(String doc, int N) {
-        Map<String, Integer> unsortedMap = getMostFrequentWords(doc);
+        Map<String, Integer> unsortedMap = getUniqueWordsMap(doc);
         LinkedHashMap<String, Integer> sortedMap = unsortedMap.entrySet()
                 .stream()
                 .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
@@ -57,13 +58,14 @@ public class BasicSearch {
         int counter = 0;
         for (String key : sortedMap.keySet()) {
             if (counter++ > N) break;
-            System.out.println(key + "  " + sortedMap.get(key));
+            if (key.charAt(0) == 'я' || key.charAt(0) == 'Я')
+                System.out.println(key + "  " + sortedMap.get(key));
         }
     }
 
     // Helper method. Returns a map in which a key is a word and a value is a number of
     // occurrences of this word in text
-    private Map<String, Integer> getMostFrequentWords(String doc) {
+    private Map<String, Integer> getUniqueWordsMap(String doc) {
         Map<String, Integer> map = new HashMap<>();
         Stream<String> stream = Arrays.stream(doc.split( "\\s+" ));
         final Integer[] e = new Integer[1];

@@ -11,13 +11,15 @@ public class Demo {
         SearchEnginePunctuationNormalizer o = new SearchEnginePunctuationNormalizer(bs);
         final String doc = o.get(BasicSearch.path);
 
-        String[] keywords = new String[]{"и", "И", "мир", "Мир", "война", "Война"};
+        String[] keywords = new String[]{"Я", "я"};
         for (String word : keywords) {
-            System.out.println(word + ":");
             System.out.println("RegExSearch: " + re.search(doc, word));
             System.out.println("EasySearch: " + es.search(doc, word));
             System.out.println("BasicSearch: " + bs.getWordFrequency(doc, word));
             System.out.println("CaseInsensitiveSearch: " + ci.search(doc, word));
         }
+
+//        bs.printMostUsedWords(doc, 10000);
+
     }
 }
