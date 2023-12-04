@@ -16,6 +16,7 @@ import java.util.stream.Stream;
 public class FileSearch {
     public static String src = String.join(File.separator, System.getProperty("user.dir"), "resources", "book.txt");
     public static String dst = String.join(File.separator, System.getProperty("user.dir"), "resources", "books");
+    public static String result = String.join(File.separator, System.getProperty("user.dir"), "resources", "result.txt");
 
     /**
      * Copy {@code n_lines} from file {@code src} to file {@code dest} starting from line number {@code start}
@@ -48,15 +49,14 @@ public class FileSearch {
      * Search words in files from {@code directory}
      * */
     public static void fileSearch(String directory) {
-        // Выполнить обход директориии и показать список файлов
+        // Выполнить обход директории и показать список файлов
         BasicSearch bs = new BasicSearch();
-        List<String> filenames = Stream.of(Objects.requireNonNull(new File(directory).listFiles()))
-                                    .filter(file -> !file.isDirectory())
-                                    .map(File::getName)
-                                    .collect(Collectors.toList());;
-        Collections.sort(filenames);
         Map<Integer, String> sortedMap = new LinkedHashMap<>();
         int i = 1;
+
+        List<String> filenames = Stream.of(Objects.requireNonNull(new File(directory).listFiles()))
+                .filter(file -> !file.isDirectory())
+                .map(File::getName).sorted().toList();
         for (String name : filenames) {
             sortedMap.put(i++, name);
         }
@@ -65,24 +65,31 @@ public class FileSearch {
         }
 
         // Поиск слов в файлах
-        while (true) {
-            String doc;
-            System.out.print("Введите порядковый номер книги (любой другой ввод для прекращения): ");
-            Scanner scanner = new Scanner(System.in);
-            try {
-                int bookNumber = Integer.parseInt(scanner.nextLine());
-                String filename = sortedMap.get(bookNumber);
-                doc = bs.get(String.join(File.separator, FileSearch.dst, filename));
-            } catch (NumberFormatException e) {
-                break;
-            }
-
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(result))) {
             while (true) {
-                System.out.print("Введите слово для поиска (пустой ввод для прекращения): ");
-                String keyword = scanner.nextLine();
-                if (keyword.isEmpty()) break;
-                System.out.println("Найдено: " + bs.getWordFrequency(doc, keyword));
+                String doc;
+                String filename;
+                System.out.print("Введите порядковый номер книги (любой другой ввод для прекращения): ");
+                Scanner scanner = new Scanner(System.in);
+                try {
+                    int bookNumber = Integer.parseInt(scanner.nextLine());
+                    filename = sortedMap.get(bookNumber);
+                    doc = bs.get(String.join(File.separator, FileSearch.dst, filename));
+                } catch (NumberFormatException e) {
+                    break;
+                }
+
+                while (true) {
+                    System.out.print("Введите слово для поиска (пустой ввод для прекращения): ");
+                    String keyword = scanner.nextLine();
+                    if (keyword.isEmpty()) break;
+                    int entries = bs.getWordFrequency(doc, keyword);
+                    System.out.println("Найдено: " + entries);
+                    writer.write(filename + " - " + keyword + " - " + entries + "\n");
+                }
             }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 

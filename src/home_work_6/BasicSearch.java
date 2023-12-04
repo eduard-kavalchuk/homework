@@ -5,6 +5,9 @@ import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * 2. Работа с коллекциями
+ * */
 public class BasicSearch {
     public static final String path = String.join(File.separator, System.getProperty("user.dir"), "resources", "book.txt");
 

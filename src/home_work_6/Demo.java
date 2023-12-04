@@ -18,8 +18,5 @@ public class Demo {
             System.out.println("BasicSearch: " + bs.getWordFrequency(doc, word));
             System.out.println("CaseInsensitiveSearch: " + ci.search(doc, word));
         }
-
-//        bs.printMostUsedWords(doc, 10000);
-
     }
 }
