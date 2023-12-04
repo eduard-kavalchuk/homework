@@ -36,7 +36,8 @@ public class Util {
                 .map(File::getName)
                 .collect(Collectors.toList());
     }
-    public static void main(String[] args) {
+
+    public static void ls() {
         List<String> filenames = listFilesUsingJavaIO(dst);
         Collections.sort(filenames);
         Map<Integer, String> sortedMap = new LinkedHashMap<>();
@@ -47,5 +48,22 @@ public class Util {
         for (int key : sortedMap.keySet()) {
             System.out.println("[" + key + "]  " + sortedMap.get(key));
         }
+
+        System.out.print("Enter number: ");
+        Scanner scanner = new Scanner(System.in);
+        Integer number = Integer.parseInt(scanner.nextLine());
+        System.out.println(number);
+        String filename = sortedMap.get(number);
+        System.out.print("Enter word: ");
+        String word = scanner.nextLine();
+        BasicSearch bs = new BasicSearch();
+        String doc = bs.get(String.join(File.separator, Util.dst, filename));
+        int num = bs.getWordFrequency(doc, word);
+        System.out.println("Occurrences: " + num);
+    }
+
+    public static void main(String[] args) {
+        ls();
+//        Util.generate(3);
     }
 }
