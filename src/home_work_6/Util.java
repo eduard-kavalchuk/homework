@@ -30,15 +30,11 @@ public class Util {
         }
     }
 
-    public static List<String> listFilesUsingJavaIO(String dir) {
-        return Stream.of(new File(dir).listFiles())
+    public static void ls() {
+        List<String> filenames = Stream.of(new File(dst).listFiles())
                 .filter(file -> !file.isDirectory())
                 .map(File::getName)
-                .collect(Collectors.toList());
-    }
-
-    public static void ls() {
-        List<String> filenames = listFilesUsingJavaIO(dst);
+                .collect(Collectors.toList());;
         Collections.sort(filenames);
         Map<Integer, String> sortedMap = new LinkedHashMap<>();
         int i = 1;
@@ -49,21 +45,37 @@ public class Util {
             System.out.println("[" + key + "]  " + sortedMap.get(key));
         }
 
-        System.out.print("Enter number: ");
-        Scanner scanner = new Scanner(System.in);
-        Integer number = Integer.parseInt(scanner.nextLine());
-        System.out.println(number);
-        String filename = sortedMap.get(number);
-        System.out.print("Enter word: ");
-        String word = scanner.nextLine();
+        Integer bookNumber;
+        String filename;
+        String keyword;
         BasicSearch bs = new BasicSearch();
-        String doc = bs.get(String.join(File.separator, Util.dst, filename));
-        int num = bs.getWordFrequency(doc, word);
-        System.out.println("Occurrences: " + num);
+        String doc;
+        while (true) {
+            System.out.print("Введите порядковый номер книги (любой другой ввод для прекращения): ");
+            Scanner scanner = new Scanner(System.in);
+            try {
+                bookNumber = Integer.parseInt(scanner.nextLine());
+            } catch (NumberFormatException e) {
+                break;
+            }
+            System.out.println(bookNumber);
+            try {
+                filename = sortedMap.get(bookNumber);
+                doc = bs.get(String.join(File.separator, Util.dst, filename));
+            } catch (NullPointerException e) {
+                break;
+            }
+
+            while (true) {
+                System.out.print("Введите слово для поиска (пустой ввод для прекращения): ");
+                keyword = scanner.nextLine();
+                if (keyword.isEmpty()) break;
+                System.out.println("Найдено: " + bs.getWordFrequency(doc, keyword));
+            }
+        }
     }
 
     public static void main(String[] args) {
         ls();
-//        Util.generate(3);
     }
 }
