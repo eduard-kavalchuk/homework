@@ -13,6 +13,11 @@ import java.util.concurrent.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/**
+ * 8. Написать новый класс с точкой входа. При запуске программы пользователь должен передать адрес папки, из которой мы будет считывать текстовые файлы. После запуска пользователь указывает что он хочет найти в этих текстах. После каждого ввода осуществляется поиск. Вводит пока не надоест. Поиск выполняется многопоточно. Один файл – одно задание для поиска. Задания помещаются в ExecutorService. Результат всех его поисков должен накапливаться в файла result.txt в формате «Имя файла – слово – количество».
+ * После заверщение обработки всех книг вывести записанные результаты в файла result.txt;
+ * Тестируем
+ * */
 public class MultiThreadedFileSearch implements Callable<String> {
     private final String filename;
     private final String keyword;
@@ -75,12 +80,5 @@ public class MultiThreadedFileSearch implements Callable<String> {
         } catch (IOException e) {
             throw new RuntimeException();
         }
-    }
-
-    public static void main(String[] args) {
-        String currentDir = System.getProperty("user.dir");
-        String dir = Paths.get(currentDir, "resources", "books").toString();
-        String output = Paths.get(currentDir, "resources", "result.txt").toString();
-        doSearch(dir, output, "на");
     }
 }
