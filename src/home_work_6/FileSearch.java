@@ -92,8 +92,4 @@ public class FileSearch {
             throw new RuntimeException(e);
         }
     }
-
-    public static void main(String[] args) {
-        fileSearch(dst);
-    }
 }
