@@ -40,29 +40,24 @@ public class CallableTask implements Callable<String> {
     }
 
     public static void main(String[] args) throws Exception {
+        List<Callable<String>> tasks = new ArrayList<>();
+        List<Future<String>> results;
+
         String currentDir = System.getProperty("user.dir");
         Path dir = Paths.get(currentDir, "resources", "books");
+
         for (String filename : listFiles(dir.toString())) {
-            System.out.println(filename);
+            tasks.add(new CallableTask(filename, "на"));
         }
 
-//        List<Callable<String>> tasks = new ArrayList<>();
-//        List<Future<String>> results;
-//
-//        // Реализовать обход директории и поместить в очередь найденные файлы
-//        for (int i = 0; i < 5; i++) {
-//            tasks.add(new CallableTask("test" + (i + 1) + ".txt"));
-//        }
-//
-//        try (ExecutorService exec = Executors.newFixedThreadPool(2)) {
-//            results = exec.invokeAll(tasks);
-//            exec.shutdown();
-//            System.out.println("Result:");
-//            StringBuilder builder = new StringBuilder();
-//            for (Future<String> future : results) {
-//                builder.append(future.get());
-//            }
-//            System.out.println(builder);
-//        }
+        try (ExecutorService exec = Executors.newFixedThreadPool(2)) {
+            results = exec.invokeAll(tasks);
+            exec.shutdown();
+            StringBuilder builder = new StringBuilder();
+            for (Future<String> future : results) {
+                builder.append(future.get());
+            }
+            System.out.println(builder);
+        }
     }
 }
